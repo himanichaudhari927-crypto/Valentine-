@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine</title>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #faf7f4;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      width: 320px;
+      position: relative;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #d8a7b1;
+      color: white;
+    }
+
+    .no {
+      position: absolute;
+      background: transparent;
+      color: #555;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="slide" id="slide1">
+    <h2>Will you be my Valentine?</h2>
+
+    <button class="yes" onclick="goToSlide2()">Yes 💗</button>
+    <button class="no" id="noBtn">No</button>
+  </div>
+
+  <div class="slide hidden" id="slide2">
+    <h2>Then it’s a date 🤍</h2>
+    <p>I was hoping you’d say yes.</p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const slide1 = document.getElementById("slide1");
+    const slide2 = document.getElementById("slide2");
+
+    function moveNo() {
+      const maxX = slide1.clientWidth - noBtn.offsetWidth;
+      const maxY = slide1.clientHeight - noBtn.offsetHeight;
+
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+    noBtn.addEventListener("click", moveNo);
+
+    function goToSlide2() {
+      slide1.classList.add("hidden");
+      slide2.classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
